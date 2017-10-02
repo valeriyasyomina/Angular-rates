@@ -1,0 +1,51 @@
+<div #graphContainer class="graph">
+  <div class="rate-tooltip-container">
+    <svg>
+      <g *ngIf="showTooltip">
+        <rect y="10" width="270" height="80" class="rate-tooltip" />
+        <text y="30" x="8" class="text-date">{{ rateToShow.date | date }}</text>
+        <text y="60" x="8" class="text-rate">$ {{ rateToShow.value }}</text>
+        <polygon *ngIf="!isFirstRateValue" class="delta-rate-triangle"
+          [class.lower-rate]="isLowerRate" points="70,50 60,60 80,60"/>
+        <text *ngIf="!isFirstRateValue" y="60" x="90" class="text-delta-rate"
+          [class.lower-rate]="isLowerRate">
+          {{ deltaRateString }}
+        </text>
+      </g>
+    </svg>
+  </div>
+  <div class="graph-container">
+    <div class="graph-container-rates-axis">
+      <svg width="40" [style.height.px]="graphHeight">
+        <text *ngFor="let yValue of yAxisData" [attr.y]="yValue.yKoordinate">{{ yValue.rateValue }}</text>
+      </svg>
+    </div>
+    <div #graphData class="graph-container-data">
+      <svg class="svg-area"
+        [style.width.px]="graphWidth"
+        [style.height.px]="graphHeight"
+        (mousemove)="svgMouseMove($event)">
+          <line *ngFor="let yValue of yAxisData"
+            [attr.x1]="0" [attr.y1]="yValue.yKoordinate"
+            [attr.x2]="graphWidth" [attr.y2]="yValue.yKoordinate"
+            class="rate-line-background"/>
+          <line *ngFor="let line of lines"
+            [attr.x1]="line.start.x" [attr.y1]="line.start.y"
+            [attr.x2]="line.end.x" [attr.y2]="line.end.y"
+            class="rate-line"/>
+          <circle *ngIf="pointFound" [attr.cx]="intersectionPoint.x" [attr.cy]="intersectionPoint.y" r="3"
+            class="rate-circle" />
+          <line *ngIf="pointFound" [attr.x1]="movePoint.x" [attr.y1]="0"
+            [attr.x2]="movePoint.x" [attr.y2]="graphHeight" class="cursor-line" stroke-dasharray="5, 5" />
+      </svg>
+    </div>
+  </div>
+  <div class="graph-month-axis">
+    <span *ngFor="let month of yearRate.monthes">
+      {{ month.name }}
+    </span>
+  </div>
+  <div class="year-container">
+    {{ yearRate.year }}
+  </div>
+</div>

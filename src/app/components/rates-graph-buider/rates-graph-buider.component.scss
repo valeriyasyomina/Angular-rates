@@ -1,0 +1,107 @@
+:host {
+  display: flex;
+}
+.graph {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #F8F8F8;
+
+  &-container {
+    display: flex;
+    flex-grow: 1;
+    padding-top: 16px;
+
+    &-rates-axis {
+      display: flex;
+      padding: 0px 8px;
+
+    }
+    &-data {
+      display: flex;
+      flex-grow: 1;
+    }
+  }
+  &-month-axis {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 64px;
+    padding:  8px 0px;
+    margin-left: 50px;
+  }
+}
+
+.rate-line {
+  stroke:	#87CEEB;
+  stroke-width: 2
+}
+
+.rate-circle {
+  stroke: black;
+  stroke-width: 3;
+  fill:	#87CEEB;
+}
+
+.cursor-line {
+  stroke: black;
+  stroke-width: 1;
+}
+
+.svg-area {
+  position: relative;
+}
+
+.rate-tooltip-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  min-height: 128px;
+}
+
+.rate-tooltip {
+  fill: white;
+  color: black;
+}
+
+.year-container {
+  display: flex;
+  padding: 8px;
+}
+
+.delta-rate-triangle {
+  fill: green;
+  stroke: green;
+  stroke-width: 2;
+}
+
+.text-date {
+  font-size: 16px;
+  fill: gray;
+}
+
+.text-rate {
+  font-size: 14px;
+  fill: black;
+}
+
+.text-delta-rate {
+  font-size: 14px;
+  fill: green;
+}
+
+.lower-rate {
+  fill: red;
+  stroke: red;
+}
+
+.rate-line-background {
+  stroke: #E0E0E0;
+  stroke-width: 1;
+}
+
+
+
+
+
+
